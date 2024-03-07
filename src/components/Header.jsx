@@ -2,10 +2,25 @@ import Logo from "../assets/logo.svg";
 import Ring from "../assets/ring.svg";
 import Moon from "../assets/icons/moon.svg";
 import ShoppingCart from "../assets/shopping-cart.svg";
+import { useState } from "react";
+import CartDetails from "./MovieListBox/CartDetails";
 
 export default function Header() {
+  //state for cart on off
+  const [showCart, setShowCart] = useState(false);
+  //function for opening cart
+  function handleOpenCart() {
+    setShowCart(true);
+  }
+
+  //function for closing cart
+  function handleCloseCart() {
+    setShowCart(false);
+  }
+
   return (
     <header>
+      {showCart && <CartDetails onClose={handleCloseCart} />}
       <nav className="container flex items-center justify-between space-x-10 py-6">
         <a href="index.html">
           <img src={Logo} width="139" height="26" alt="logo" />
@@ -32,6 +47,7 @@ export default function Header() {
             <a
               className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
               href="#"
+              onClick={handleOpenCart}
             >
               <img
                 src={ShoppingCart}
