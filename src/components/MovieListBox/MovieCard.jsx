@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { getImageUrl } from "../../utils/CineUtility.js";
 import Rating from "./Rating.jsx";
 import MovieDetailsModal from "./MovieDetailsModal.jsx";
+import { MovieContext } from "../../context/MovieContext.js";
 
 export default function MovieCard({ movie }) {
+  //collecting context api
+  const { cartData, setCartData } = useContext(MovieContext);
   // state for modal on off
   const [showModal, setShowModal] = useState(false);
   // state for modal data
@@ -20,11 +23,29 @@ export default function MovieCard({ movie }) {
     setSelectedModal(movie);
     setShowModal(true);
   }
+  // function for adding movie to cart
+  function handleAddToCart(evnt, movie) {
+    evnt.stopPropagation();
+    // function for
+    const found = cartData.find((item) => {
+      return item.id === movie.id;
+    });
+
+    if (!found) {
+      setCartData([...cartData, movie]);
+    } else {
+      console.log(`The movie ${movie} has been added to cart already`);
+    }
+  }
 
   return (
     <>
       {showModal && (
-        <MovieDetailsModal movie={selectedModal} onClose={handleModalClose} />
+        <MovieDetailsModal
+          movie={selectedModal}
+          onClose={handleModalClose}
+          onAddCart={handleAddToCart}
+        />
       )}
       <figure className="p-4 border border-black/10 shadow-sm dark:border-white/10 rounded-xl">
         <a href="#" onClick={() => handleMovieShowModal(movie)}>
@@ -39,7 +60,10 @@ export default function MovieCard({ movie }) {
             <div className="flex items-center space-x-1 mb-5">
               <Rating value={movie.rating} />
             </div>
-            <a className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm">
+            <a
+              className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
+              onClick={(evnt) => handleAddToCart(evnt, movie)}
+            >
               <img src="./assets/tag.svg" alt="" />
               <span>${movie.price} | Add to Cart</span>
             </a>
