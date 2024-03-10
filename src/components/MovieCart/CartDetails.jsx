@@ -1,7 +1,7 @@
-import CheckOutLogo from "../assets/icons/checkout.svg";
+import CheckOutLogo from "../../assets/icons/checkout.svg";
 import { useContext } from "react";
 import CartDetailBox from "./CartDetailBox";
-import { MovieContext } from "../context/MovieContext";
+import { MovieContext } from "../../context/MovieContext";
 
 /* eslint-disable react/prop-types */
 export default function CartDetails({ onClose }) {

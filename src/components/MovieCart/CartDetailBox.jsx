@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
-import RemoveLogo from "../assets/remove.svg";
-import { getImageUrl } from "../utils/CineUtility";
-import { MovieContext } from "../context/MovieContext";
+import RemoveLogo from "../../assets/remove.svg";
+import { getImageUrl } from "../../utils/CineUtility";
+import { MovieContext } from "../../context/MovieContext";
 export default function CartDetailBox({ movie }) {
   const { cartData, setCartData } = useContext(MovieContext);
   // Function for removing item on cart
@@ -32,14 +32,12 @@ export default function CartDetailBox({ movie }) {
         </div>
       </div>
       <div className="flex justify-between gap-4 items-center">
-        <button className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white">
+        <button
+          className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
+          onClick={(evnt) => handleRemoveItem(evnt, movie.id)}
+        >
           <img className="w-5 h-5" src={RemoveLogo} alt="remove" />
-          <span
-            className="max-md:hidden"
-            onClick={(evnt) => handleRemoveItem(evnt, movie.id)}
-          >
-            Remove
-          </span>
+          <span className="max-md:hidden">Remove</span>
         </button>
       </div>
     </div>

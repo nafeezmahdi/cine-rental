@@ -4,7 +4,7 @@ import Moon from "../assets/icons/moon.svg";
 import Sun from "../assets/icons/sun.svg";
 import ShoppingCart from "../assets/shopping-cart.svg";
 import { useContext, useState } from "react";
-import CartDetails from "./CartDetails";
+import CartDetails from "./MovieCart/CartDetails";
 import { MovieContext } from "../context/MovieContext";
 import { ThemeContext } from "../context/ThemeContext";
 
