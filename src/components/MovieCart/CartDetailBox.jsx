@@ -4,16 +4,15 @@ import RemoveLogo from "../../assets/remove.svg";
 import { getImageUrl } from "../../utils/CineUtility";
 import { MovieContext } from "../../context/MovieContext";
 export default function CartDetailBox({ movie }) {
-  const { cartData, setCartData } = useContext(MovieContext);
+  const { dispatch } = useContext(MovieContext);
   // Function for removing item on cart
-  function handleRemoveItem(evnt, itemId) {
+  function handleRemoveItem(evnt, item) {
     evnt.preventDefault();
 
-    const filteredMovie = cartData.filter((item) => {
-      return item.id !== itemId;
+    dispatch({
+      type: "Remove_From_Cart",
+      payload: item,
     });
-
-    setCartData([...filteredMovie]);
   }
   return (
     <div className="grid grid-cols-[1fr_auto] gap-4">
@@ -34,7 +33,7 @@ export default function CartDetailBox({ movie }) {
       <div className="flex justify-between gap-4 items-center">
         <button
           className="bg-[#D42967] rounded-md p-2 md:px-4 inline-flex items-center space-x-2 text-white"
-          onClick={(evnt) => handleRemoveItem(evnt, movie.id)}
+          onClick={(evnt) => handleRemoveItem(evnt, movie)}
         >
           <img className="w-5 h-5" src={RemoveLogo} alt="remove" />
           <span className="max-md:hidden">Remove</span>

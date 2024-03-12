@@ -5,7 +5,7 @@ import { MovieContext } from "../../context/MovieContext";
 
 /* eslint-disable react/prop-types */
 export default function CartDetails({ onClose }) {
-  const { cartData, setCartData } = useContext(MovieContext);
+  const { state } = useContext(MovieContext);
 
   return (
     <>
@@ -16,10 +16,10 @@ export default function CartDetails({ onClose }) {
               Your Carts
             </h2>
             <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
-              {cartData.length === 0 ? (
+              {state.cartData.length === 0 ? (
                 <p className="text-3xl">The Cart Is Empty</p>
               ) : (
-                cartData.map((data) => (
+                state.cartData.map((data) => (
                   <CartDetailBox movie={data} key={data.id} />
                 ))
               )}
