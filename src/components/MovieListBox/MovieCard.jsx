@@ -4,7 +4,6 @@ import { getImageUrl } from "../../utils/CineUtility.js";
 import Rating from "./Rating.jsx";
 import MovieDetailsModal from "./MovieDetailsModal.jsx";
 import { MovieContext } from "../../context/MovieContext.js";
-import { toast } from "react-toastify";
 
 export default function MovieCard({ movie }) {
   //collecting context api

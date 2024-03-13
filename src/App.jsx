@@ -6,8 +6,6 @@ import Sidebar from "./components/Sidebar";
 import { MovieContext } from "./context/MovieContext";
 import { ThemeContext } from "./context/ThemeContext";
 import { CartReducer, initialState } from "./reducers/CartReducer";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   // state for collecting cart data
@@ -28,7 +26,6 @@ function App() {
             </main>
             <Footer />
           </div>
-          <ToastContainer />
         </MovieContext.Provider>
       </ThemeContext.Provider>
     </>
