@@ -4,6 +4,7 @@ import { getImageUrl } from "../../utils/CineUtility.js";
 import Rating from "./Rating.jsx";
 import MovieDetailsModal from "./MovieDetailsModal.jsx";
 import { MovieContext } from "../../context/MovieContext.js";
+import { toast } from "react-toastify";
 
 export default function MovieCard({ movie }) {
   //collecting context api
@@ -39,7 +40,7 @@ export default function MovieCard({ movie }) {
         },
       });
     } else {
-      console.log(`The movie ${movie} has been added to cart already`);
+      console.log(`The movie ${movie.title} has been added to cart already`);
     }
   }
 
@@ -65,13 +66,13 @@ export default function MovieCard({ movie }) {
             <div className="flex items-center space-x-1 mb-5">
               <Rating value={movie.rating} />
             </div>
-            <a
+            <button
               className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] font-semibold text-sm"
               onClick={(evnt) => handleAddToCart(evnt, movie)}
             >
               <img src="./assets/tag.svg" alt="" />
               <span>${movie.price} | Add to Cart</span>
-            </a>
+            </button>
           </figcaption>
         </a>
       </figure>
