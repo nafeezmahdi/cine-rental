@@ -3,6 +3,7 @@ import { useContext } from "react";
 import RemoveLogo from "../../assets/remove.svg";
 import { getImageUrl } from "../../utils/CineUtility";
 import { MovieContext } from "../../context/MovieContext";
+import { toast } from "react-toastify";
 export default function CartDetailBox({ movie }) {
   const { dispatch } = useContext(MovieContext);
   // Function for removing item on cart
@@ -12,6 +13,11 @@ export default function CartDetailBox({ movie }) {
     dispatch({
       type: "Remove_From_Cart",
       payload: item,
+    });
+
+    toast.info(`Removed ${item.title} from the cart`, {
+      position: "bottom-right",
+      className: "foo-bar",
     });
   }
   return (

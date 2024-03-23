@@ -4,6 +4,7 @@ import { getImageUrl } from "../../utils/CineUtility.js";
 import Rating from "./Rating.jsx";
 import MovieDetailsModal from "./MovieDetailsModal.jsx";
 import { MovieContext } from "../../context/MovieContext.js";
+import { toast } from "react-toastify";
 
 export default function MovieCard({ movie }) {
   //collecting context api
@@ -38,8 +39,14 @@ export default function MovieCard({ movie }) {
           ...movie,
         },
       });
+      toast.success(`Movie ${movie.title} added successfully`, {
+        position: "bottom-right",
+        className: "foo-bar",
+      });
     } else {
-      console.log(`The movie ${movie.title} has been added to cart already`);
+      toast.error(`The movie ${movie.title} has been added to cart already`, {
+        position: "bottom-right",
+      });
     }
   }
 
